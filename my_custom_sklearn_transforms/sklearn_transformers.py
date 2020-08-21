@@ -1,4 +1,5 @@
 from sklearn.base import BaseEstimator, TransformerMixin
+from numpy as np
 
 
 # All sklearn Transforms must have the `transform` and `fit` methods
@@ -27,10 +28,10 @@ class MediaNotas(BaseEstimator, TransformerMixin):
 
   def media_notas(self, x):
     notas = []
-    notas.append(x['NOTA_DE'])
-    notas.append(x['NOTA_EM'])
-    notas.append(x['NOTA_MF'])
-    notas.append(x['NOTA_GO'])
+    notas.append(x['NOTA_DE']) if x['NOTA_DE'] != np.nan else notas.append[0]
+    notas.append(x['NOTA_EM']) if x['NOTA_EM'] != np.nan else notas.append[0]
+    notas.append(x['NOTA_MF']) if x['NOTA_MF'] != np.nan else notas.append[0]
+    notas.append(x['NOTA_GO']) if x['NOTA_GO'] != np.nan else notas.append[0]
     media = np.sum(notas)/4
     return pd.Series(data=[media], index=[self.nome])
 
